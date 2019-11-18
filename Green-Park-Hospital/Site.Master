@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="Assignment2.Assignment2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Hospital Management System</title>
+
+<link href="css/site.css" rel="stylesheet" type="text/css" />
+<link href="css/navbar.css" rel="stylesheet" type="text/css" />
+<link href="css/forms.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+<form id="form1" runat="server">
+    <div id="wrapper">
+      <div id="header">
+          <div id="header_left">
+              &nbsp;<img src="/images/logo.png" alt="logo" width="387" height="97" id="Insert_logo" />
+          </div>
+          <div id="header_right">
+            <asp:Label runat="server" ID="lblUserStatus" Font-Bold="True" Font-Names="Arial" Font-Size="Medium" ForeColor="#000099" />
+              &nbsp;<asp:HyperLink ID="lnkLogout" runat="server" NavigateUrl="~/default.aspx?login=no" Font-Bold="True" Font-Names="Arial" Font-Size="Medium">Logout</asp:HyperLink>
+          </div>
+        </div><!-- end of header -->  
+         <div id="menu">
+
+          <ul>                                        
+            <li><asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="default.aspx"><img src="/images/icons/home.png" width="32" height="32" alt="icon" /><span>HOME</span></asp:HyperLink></li>
+            <li><asp:HyperLink ID="lnkDatabaseTables" runat="server" NavigateUrl="~/tables/"><img src="/images/icons/database-table.png" width="32" height="32" alt="icon" /><span>VIEW DATABASE</span></asp:HyperLink></li>
+            
+            <li><asp:HyperLink ID="lnkRegPatient" runat="server" NavigateUrl="regPatient.aspx"><img src="/images/icons/register.png" width="32" height="32" alt="icon" /><span>NEW PATIENT</span></asp:HyperLink></li>
+            <!--
+            <li><asp:HyperLink ID="lnkPatient" runat="server" NavigateUrl="PatientList.aspx"><img src="/images/icons/patient.png" width="32" height="32" alt="icon" /><span>PATIENTS</span></asp:HyperLink></li>
+            <li><asp:HyperLink ID="lnkVisit" runat="server" NavigateUrl="VisitList.aspx"><img src="/images/icons/medical-report.png" width="32" height="32" alt="icon" /><span>VISITS</span></asp:HyperLink></li>
+            <li><asp:HyperLink ID="lnkDoctors" runat="server" NavigateUrl="DoctorList.aspx"><img src="/images/icons/doctor.png" width="32" height="32" alt="icon" /><span>DOCTORS</span></asp:HyperLink></li>
+            <li><asp:HyperLink ID="lnkBed" runat="server" NavigateUrl="BedList.aspx"><img src="/images/icons/bed.png" width="32" height="32" alt="icon" /><span>BEDS</span></asp:HyperLink></li>
+            -->
+            <li><asp:HyperLink ID="lnkDoctorPatientInfo" runat="Server" NavigateUrl="AddVisit.aspx"><img src="/images/icons/stethoscope_add.png" width="32" height="32" alt="" /><span>ADD VISITS</span></asp:HyperLink></li>
+            <li><asp:HyperLink ID="lnkDischargePatient" runat="Server" NavigateUrl="DischargePatient.aspx"><img src="/images/icons/price-icon.png" width="32" height="32" alt="" /><span>DISCHARGE</span></asp:HyperLink></li>
+            <li><asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="Login.aspx"><img src="/images/icons/user-login.png" width="32" height="32" alt="icon"/><span>LOGIN</span></asp:HyperLink></li>
+            <li><asp:HyperLink ID="lnkRegUser" runat="server" NavigateUrl="RegUser.aspx"><img src="/images/icons/add-user-icon2.png" width="32" height="32" alt="icon" /><span>ADD USER</span></asp:HyperLink></li>
+          </ul>
+         </div>
+         <div id="body">
+ 	         <asp:ContentPlaceHolder ID="SiteBody" runat="server"></asp:ContentPlaceHolder>
+         </div><!-- end of body-->
+  
+          <div class="footer">
+  	        <div class="fltlft">Developed By Paul King 2014</div>
+                <div class="fltrt">
+                    <a href="sitemap.aspx">Site Map</a>
+                </div>
+            </div><!-- end of footer-->
+        </div><!-- end of wrapper-->
+    </form>
+</body>
+</html>

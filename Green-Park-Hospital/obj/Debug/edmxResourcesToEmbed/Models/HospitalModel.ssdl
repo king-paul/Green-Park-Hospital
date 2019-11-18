@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bed">
+    <Key>
+      <PropertyRef Name="BedID" />
+    </Key>
+    <Property Name="BedID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ward Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bed Number" Type="int" Nullable="false" />
+    <Property Name="Rate Per Day" Type="numeric" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="Occupied" Type="bit" Nullable="false" />
+    <Property Name="OccupiedID" Type="int" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="DoctorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Doctor Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="HomePhone" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="Mobile" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date Of Birth" Type="date" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Phone (Home/Work)" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Phone(Mobile)" Type="varchar" MaxLength="20" />
+    <Property Name="Emerg. Contact (Name)" Type="varchar" MaxLength="50" />
+    <Property Name="Emerg. Contact (Number)" Type="varchar" MaxLength="20" />
+    <Property Name="Date Of Registration" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="Email Address" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="isAdmin" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Visit">
+    <Key>
+      <PropertyRef Name="VisitID" />
+    </Key>
+    <Property Name="VisitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorID" Type="int" Nullable="false" />
+    <Property Name="PatientID" Type="int" Nullable="false" />
+    <Property Name="In Patient" Type="bit" Nullable="false" />
+    <Property Name="BedID" Type="int" />
+    <Property Name="Date Of Visit" Type="date" Nullable="false" />
+    <Property Name="Date Of Discharge" Type="date" />
+    <Property Name="Symptoms" Type="varchar" MaxLength="1000" />
+    <Property Name="Disease" Type="varchar" MaxLength="1000" />
+    <Property Name="Treatment" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Assignment 2 - Hospital.dbo.BedView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BedView">
+    <Key>
+      <PropertyRef Name="Ward Type" />
+      <PropertyRef Name="Number" />
+      <PropertyRef Name="Rate Per Day" />
+      <PropertyRef Name="Occupied" />
+    </Key>
+    <Property Name="Ward Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Rate Per Day" Type="numeric" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="Occupied" Type="bit" Nullable="false" />
+    <Property Name="Occupied By" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Assignment 2 - Hospital.dbo.VisitsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VisitsView">
+    <Key>
+      <PropertyRef Name="Patient Name" />
+      <PropertyRef Name="In Patient" />
+      <PropertyRef Name="Date Of Visit" />
+    </Key>
+    <Property Name="Patient Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Doctor Name" Type="varchar" MaxLength="50" />
+    <Property Name="In Patient" Type="bit" Nullable="false" />
+    <Property Name="Date Of Visit" Type="date" Nullable="false" />
+    <Property Name="Date Of Discharge" Type="date" />
+    <Property Name="Symptoms" Type="varchar" MaxLength="1000" />
+    <Property Name="Disease" Type="varchar" MaxLength="1000" />
+    <Property Name="Treatment" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <Association Name="FK_Bed_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+    <End Role="Bed" Type="Self.Bed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="Bed">
+        <PropertyRef Name="OccupiedID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visit_Bed">
+    <End Role="Bed" Type="Self.Bed" Multiplicity="0..1" />
+    <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bed">
+        <PropertyRef Name="BedID" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="BedID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visit_Doctor">
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
+    <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visit_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CreateNewUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+    <Parameter Name="EmailAddress" Type="varchar" Mode="In" />
+    <Parameter Name="isAdmin" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="RegisterPatient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="DateOfBirth" Type="date" Mode="In" />
+    <Parameter Name="Address" Type="varchar" Mode="In" />
+    <Parameter Name="NumberHome" Type="varchar" Mode="In" />
+    <Parameter Name="NumberMobile" Type="varchar" Mode="In" />
+    <Parameter Name="EmergContactName" Type="varchar" Mode="In" />
+    <Parameter Name="EmergContactNumber" Type="varchar" Mode="In" />
+    <Parameter Name="DateOfRegistration" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="HospitalModelStoreContainer">
+    <EntitySet Name="Bed" EntityType="Self.Bed" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Visit" EntityType="Self.Visit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BedView" EntityType="Self.BedView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [BedView].[Ward Type] AS [Ward Type], 
+    [BedView].[Number] AS [Number], 
+    [BedView].[Rate Per Day] AS [Rate Per Day], 
+    [BedView].[Occupied] AS [Occupied], 
+    [BedView].[Occupied By] AS [Occupied By]
+    FROM [dbo].[BedView] AS [BedView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VisitsView" EntityType="Self.VisitsView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VisitsView].[Patient Name] AS [Patient Name], 
+    [VisitsView].[Doctor Name] AS [Doctor Name], 
+    [VisitsView].[In Patient] AS [In Patient], 
+    [VisitsView].[Date Of Visit] AS [Date Of Visit], 
+    [VisitsView].[Date Of Discharge] AS [Date Of Discharge], 
+    [VisitsView].[Symptoms] AS [Symptoms], 
+    [VisitsView].[Disease] AS [Disease], 
+    [VisitsView].[Treatment] AS [Treatment]
+    FROM [dbo].[VisitsView] AS [VisitsView]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Bed_Patient" Association="Self.FK_Bed_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Bed" EntitySet="Bed" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visit_Bed" Association="Self.FK_Visit_Bed">
+      <End Role="Bed" EntitySet="Bed" />
+      <End Role="Visit" EntitySet="Visit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visit_Doctor" Association="Self.FK_Visit_Doctor">
+      <End Role="Doctor" EntitySet="Doctor" />
+      <End Role="Visit" EntitySet="Visit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visit_Patient" Association="Self.FK_Visit_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Visit" EntitySet="Visit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

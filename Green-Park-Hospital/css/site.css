@@ -1,0 +1,213 @@
+﻿@charset "utf-8";
+@import url("navbar.css");
+
+/***************
+ * Page Layout *
+ ***************/
+
+#wrapper {
+	width: 960px;
+    height:100%;
+	margin-left: auto;
+	margin-right: auto;
+	border-left: thin solid #000;
+    border-right: thin solid #000;
+    border-bottom: thin solid #000;
+}
+
+
+#header {
+    /*background-color:#CCC;*/
+    background-image:url("../images/header_background.png");
+    padding-top: 3px;
+	padding: 3px;
+	overflow:hidden;
+}
+
+#header_left
+{
+    float:left;
+    width:400px;
+}
+
+#header_right
+{
+    float:right;
+    font-size:10pt;
+    width:250px;
+}
+
+#body
+{
+    min-height:550px;
+	width:100%;
+	background-color:#FFF;
+    overflow:hidden;
+}
+
+.content_full
+{
+    width:98.8%;
+	margin:5px;
+    padding:20px;
+	clear:both;
+}
+
+.content_left
+{
+	width:600px;
+	float:left;
+    padding:20px;
+}
+
+.conten_left img
+{
+	clear:both;
+}
+
+.content_right
+{
+	width:258px;
+	float:right;
+	margin:5px;
+    padding-right:10px;
+    height: 427px;
+}
+
+.content_middle
+{
+	width:75%;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* ~~ The footer ~~ */
+.footer {
+	height:25px;
+	padding: 5px;
+	background: #3f3f3f;
+	position: relative;/* this gives IE6 hasLayout to properly clear */
+    left: 0px;
+    font-size:small;
+}
+
+/* ~~ miscellaneous float/clear classes ~~ */
+.fltrt { 
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { 
+    padding-top:2px;
+	float: left;
+	margin-right: 8px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+.clearfloat {
+	padding-top:2px;
+    clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+/****************
+ *  Formatting  *
+ ****************/
+
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0px;
+	color: #000;
+	background-color: #E8E8E8;
+    text-align: left;
+}
+
+.icon_label a, .icon_label a:visited {
+    font-family:'Arial Rounded MT';
+    font-size:x-large;
+    font-weight:bold;
+    text-decoration:none;
+    color:#00C;
+}
+
+a img {
+    /* this selector removes the default blue border displayed in some
+       browsers around an image when it is surrounded by a link */
+	border: none;
+}
+
+
+.footer a:link, .footer a:visited {
+    font-weight:bold;
+    color: #001483;
+    text-decoration: none;
+}
+
+.footer a:hover, .footer a:focus { 
+	text-decoration: none;
+    text-decoration: underline;
+}
+
+.footer a:active
+{
+    color: #7a0000;
+}
+
+p
+{
+	font-size: 10pt;
+	line-height: normal;
+}
+
+ul
+{
+	font-size: 10pt;
+	line-height:normal;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h1
+{
+    font-size:46px;
+	color:#000255;
+    text-align:center;
+}
+
+h2
+{
+	font-size:medium;
+	color:#69F;
+	line-height:0px;
+	padding-top:20px;
+	margin-bottom:10px;
+}
+
+h3
+{
+	font-size:10pt;
+	line-height:0px;
+	padding-top:10px;
+	margin-bottom:-5px;
+}
+
+h4
+{
+    font-size:24px;
+	line-height:0px;
+	padding-top:20px;
+	margin-bottom:10px;
+    margin-left:-10px;
+}
+
+h5
+{
+    font-size:medium;
+    font-weight:bold;
+    margin-top:0px;
+    margin-bottom:-5px;
+}

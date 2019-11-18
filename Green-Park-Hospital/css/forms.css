@@ -1,0 +1,56 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+h1 {
+    font-family:'Microsoft Sans Serif';
+    font-size:14pt;
+    padding:3px;
+    margin-bottom:0px;
+    height: 20px;
+}            
+.reg_form {
+    width:650px;
+    background-color:#E9ECEF;
+    border:1px solid #000;
+    margin:50px;
+}
+
+.form_wide {
+    background-color:#E9ECEF;
+    border:1px solid #000;
+    margin:50px;
+    padding:10px;
+}
+
+hr {
+    width:98%;
+}
+table {
+    font-family:Arial;
+    font-size:11pt;
+}        
+td span {
+    color:red;
+}
+.label {
+    background-color: #D8dBDE;
+    width: 110px;
+    padding-left: 3px;
+}
+
+/* Registraion and Login styles*/
+
+.GreyBox 
+{ 
+	width:100%;
+    min-height:550px;
+	background-color:#D8dBDE;
+	border: 1px solid #999;
+    overflow:hidden;
+}
+
+#regConfirm
+{
+    /*height:100px; /* 691 matches the form*/
+    padding:120px 80px;
+}

@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HospitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bed">
+    <Key>
+      <PropertyRef Name="BedID" />
+    </Key>
+    <Property Name="BedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ward_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Bed_Number" Type="Int32" Nullable="false" />
+    <Property Name="Rate_Per_Day" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="Occupied" Type="Boolean" Nullable="false" />
+    <Property Name="OccupiedID" Type="Int32" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK_Bed_Patient" FromRole="Bed" ToRole="Patient" />
+    <NavigationProperty Name="Visits" Relationship="Self.FK_Visit_Bed" FromRole="Bed" ToRole="Visit" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="DoctorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DoctorType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HomePhone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Visits" Relationship="Self.FK_Visit_Doctor" FromRole="Doctor" ToRole="Visit" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date_Of_Birth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone__Home_Work_" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone_Mobile_" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Emerg__Contact__Name_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Emerg__Contact__Number_" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Of_Registration" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Beds" Relationship="Self.FK_Bed_Patient" FromRole="Patient" ToRole="Bed" />
+    <NavigationProperty Name="Visits" Relationship="Self.FK_Visit_Patient" FromRole="Patient" ToRole="Visit" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email_Address" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Visit">
+    <Key>
+      <PropertyRef Name="VisitID" />
+    </Key>
+    <Property Name="VisitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="In_Patient" Type="Boolean" Nullable="false" />
+    <Property Name="BedID" Type="Int32" />
+    <Property Name="Date_Of_Visit" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Date_Of_Discharge" Type="DateTime" Precision="0" />
+    <Property Name="Symptoms" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Disease" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Treatment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Bed" Relationship="Self.FK_Visit_Bed" FromRole="Visit" ToRole="Bed" />
+    <NavigationProperty Name="Doctor" Relationship="Self.FK_Visit_Doctor" FromRole="Visit" ToRole="Doctor" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK_Visit_Patient" FromRole="Visit" ToRole="Patient" />
+  </EntityType>
+  <EntityType Name="BedView">
+    <Key>
+      <PropertyRef Name="Ward_Type" />
+      <PropertyRef Name="Number" />
+      <PropertyRef Name="Rate_Per_Day" />
+      <PropertyRef Name="Occupied" />
+    </Key>
+    <Property Name="Ward_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="Rate_Per_Day" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="Occupied" Type="Boolean" Nullable="false" />
+    <Property Name="Occupied_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VisitsView">
+    <Key>
+      <PropertyRef Name="Patient_Name" />
+      <PropertyRef Name="In_Patient" />
+      <PropertyRef Name="Date_Of_Visit" />
+    </Key>
+    <Property Name="Patient_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Doctor_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="In_Patient" Type="Boolean" Nullable="false" />
+    <Property Name="Date_Of_Visit" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Date_Of_Discharge" Type="DateTime" Precision="0" />
+    <Property Name="Symptoms" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Disease" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Treatment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Bed_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+    <End Role="Bed" Type="Self.Bed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="Bed">
+        <PropertyRef Name="OccupiedID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visit_Bed">
+    <End Role="Bed" Type="Self.Bed" Multiplicity="0..1" />
+    <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bed">
+        <PropertyRef Name="BedID" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="BedID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visit_Doctor">
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
+    <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visit_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HospitalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Beds" EntityType="Self.Bed" />
+    <EntitySet Name="Doctors" EntityType="Self.Doctor" />
+    <EntitySet Name="Patients" EntityType="Self.Patient" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Visits" EntityType="Self.Visit" />
+    <EntitySet Name="BedViews" EntityType="Self.BedView" />
+    <EntitySet Name="VisitsViews" EntityType="Self.VisitsView" />
+    <AssociationSet Name="FK_Bed_Patient" Association="Self.FK_Bed_Patient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="Bed" EntitySet="Beds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visit_Bed" Association="Self.FK_Visit_Bed">
+      <End Role="Bed" EntitySet="Beds" />
+      <End Role="Visit" EntitySet="Visits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visit_Doctor" Association="Self.FK_Visit_Doctor">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="Visit" EntitySet="Visits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visit_Patient" Association="Self.FK_Visit_Patient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="Visit" EntitySet="Visits" />
+    </AssociationSet>
+    <FunctionImport Name="CreateNewUser">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="EmailAddress" Mode="In" Type="String" />
+      <Parameter Name="isAdmin" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="RegisterPatient">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="DateOfBirth" Mode="In" Type="DateTime" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="NumberHome" Mode="In" Type="String" />
+      <Parameter Name="NumberMobile" Mode="In" Type="String" />
+      <Parameter Name="EmergContactName" Mode="In" Type="String" />
+      <Parameter Name="EmergContactNumber" Mode="In" Type="String" />
+      <Parameter Name="DateOfRegistration" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(HospitalModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(HospitalModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

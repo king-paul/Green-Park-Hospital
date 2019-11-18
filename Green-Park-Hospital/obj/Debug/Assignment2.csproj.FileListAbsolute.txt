@@ -1,0 +1,17 @@
+D:\RMIT\Web Development Technolgies\Assignments\Assignment2\Assignment2\bin\Assignment2.dll.config
+D:\RMIT\Web Development Technolgies\Assignments\Assignment2\Assignment2\bin\Assignment2.dll
+D:\RMIT\Web Development Technolgies\Assignments\Assignment2\Assignment2\bin\Assignment2.pdb
+D:\RMIT\Web Development Technolgies\Assignments\Assignment2\Assignment2\obj\Debug\Assignment2.csprojResolveAssemblyReference.cache
+D:\RMIT\Web Development Technolgies\Assignments\Assignment2\Assignment2\obj\Debug\Assignment2.dll
+D:\RMIT\Web Development Technolgies\Assignments\Assignment2\Assignment2\obj\Debug\Assignment2.pdb
+D:\RMIT\Web Development Technologies\Assignments\Assignment2\Assignment2\bin\Assignment2.dll.config
+D:\RMIT\Web Development Technologies\Assignments\Assignment2\Assignment2\bin\Assignment2.dll
+D:\RMIT\Web Development Technologies\Assignments\Assignment2\Assignment2\bin\Assignment2.pdb
+D:\RMIT\Web Development Technologies\Assignments\Assignment2\Assignment2\bin\EntityFramework.dll
+D:\RMIT\Web Development Technologies\Assignments\Assignment2\Assignment2\bin\EntityFramework.SqlServer.dll
+D:\RMIT\Web Development Technologies\Assignments\Assignment2\Assignment2\bin\EntityFramework.xml
+D:\RMIT\Web Development Technologies\Assignments\Assignment2\Assignment2\bin\EntityFramework.SqlServer.xml
+D:\RMIT\Web Development Technologies\Assignments\Assignment2\Assignment2\obj\Debug\Assignment2.csprojResolveAssemblyReference.cache
+D:\RMIT\Web Development Technologies\Assignments\Assignment2\Assignment2\obj\Debug\Assignment2.dll
+D:\RMIT\Web Development Technologies\Assignments\Assignment2\Assignment2\obj\Debug\Assignment2.pdb
+D:\RMIT\Web Development Technologies\Assignments\Assignment2\Assignment2\bin\AjaxMin.dll
